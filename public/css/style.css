@@ -1,0 +1,12 @@
+body {
+  background-color: black;
+}
+main {
+  background-color: antiquewhite;
+}
+.pokeContainer {
+  background-color: blue;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+}
