@@ -1,0 +1,15 @@
+<%- include ('common/header') -%>
+<main>
+  <div key="<%= pokemon.id %> " class="pokeDiv">
+    <p><%= pokemon.id %></p>
+    <p><%= pokemon.name %></p>
+    <img src="<%= pokemon.image %> " class="pokeImg" />
+    <p><%= pokemon.type %></p>
+    <p><%= pokemon.desc %></p>
+    <p><%= pokemon.height %></p>
+    <p><%= pokemon.weight %></p>
+    <p><%= pokemon.category %></p>
+    <p><%= pokemon.ability %></p>
+  </div>
+</main>
+<%- include ('common/footer') -%>

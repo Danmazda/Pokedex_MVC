@@ -1,13 +1,13 @@
 <%- include ('common/header') -%>
 <main>
-  <h1>Olá</h1>
+  <h1>Tchau</h1>
   <div class="pokeContainer">
-    <% pokedex.forEach(poke=>{ %>
+    <% pokemons.forEach(poke=>{ %>
     <div key="<%= poke.id %> " class="pokeDiv">
       <p><%= poke.id %></p>
       <p><%= poke.name %></p>
       <img src="<%= poke.image %> " class="pokeImg" />
-      <p><%= poke.desc %></p>
+      <p><%= poke.type %></p>
     </div>
     <% }) %>
   </div>
