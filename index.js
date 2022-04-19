@@ -10,6 +10,13 @@ app.get("/", (req, res) => {
   res.render("index", { pokedex: pokedex });
 });
 
+app.post("/", (req, res) => {
+  pokedex.push(req.body.poke);
+});
+
+app.get("/register", (req, res) => {
+  res.render("register");
+});
 app.listen(port, () => {
   console.log("server running on port 3000");
 });
