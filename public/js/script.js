@@ -1,5 +1,7 @@
 const pokemons = document.querySelectorAll(".pokeDiv");
 const title = document.querySelector(".imageHead");
+const searchBt = document.querySelector(".fa-magnifying-glass");
+const searchInput = document.querySelector("input");
 pokemons.forEach((poke) => {
   poke.addEventListener("click", () => {
     const key = poke.getAttribute("key");
@@ -9,4 +11,8 @@ pokemons.forEach((poke) => {
 
 title.addEventListener("click", () => {
   location.href = "/";
+});
+
+searchBt.addEventListener("click", () => {
+  location.href = `/search/${searchInput.value}`;
 });

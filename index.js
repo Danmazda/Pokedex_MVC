@@ -1,6 +1,6 @@
 import express from "express";
 import ejs from "ejs";
-import { Sequelize, DataTypes } from "sequelize";
+import { Sequelize, DataTypes, Op } from "sequelize";
 import dotenv from "dotenv";
 import { allTypes } from "./objects.js";
 const app = express();
@@ -36,6 +36,7 @@ export const Pokemon = sequelize.define("Pokemon", {
   },
   image: {
     type: DataTypes.STRING,
+    allowNull: false,
   },
   description: {
     type: DataTypes.TEXT,
@@ -54,27 +55,18 @@ export const Pokemon = sequelize.define("Pokemon", {
   },
 });
 
-// const bulbasaur = await Pokemon.create({
-//   id: 1,
-//   name: "Bulbasaur",
-//   type: "grass",
-//   image: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png",
-//   description:
-//     "There is a plant seed on its back right from the day this Pokémon is born. The seed slowly grows larger.",
-//   height: 0.7,
-//   weight: 6.9,
-//   category: "seed",
-//   ability: "overgrow",
-// });
-
 //express routes
 app.get("/", async (req, res) => {
-  const pokemons = await Pokemon.findAll({});
+  const pokemons = await Pokemon.findAll({
+    attributes: ["id", "name", "image", "type"],
+    order: [["id", "ASC"]],
+    limit: 50,
+  });
   res.render("index", { pokemons });
 });
 
 app.post("/", async (req, res) => {
-  const {
+  let {
     id,
     name,
     type,
@@ -85,10 +77,18 @@ app.post("/", async (req, res) => {
     category,
     ability,
   } = req.body;
+
+  if (height === "") {
+    height = null;
+  }
+  if (weight === "") {
+    weight = null;
+  }
+
   const pokemon = await Pokemon.create({
     id,
-    name,
-    type,
+    name: name.toLowerCase(),
+    type: type.toLowerCase(),
     image,
     description,
     height,
@@ -113,6 +113,25 @@ app.get("/details/:id", async (req, res) => {
   });
   res.render("details", { pokemon: pokemon });
 });
+app.get("/update/:id", async (req, res) => {
+  res.write("this is the update path");
+  res.send();
+});
+
+app.get("/search/:searchQuery", async (req, res) => {
+  const pokemons = await Pokemon.findAll({
+    where: {
+      [Op.or]: [
+        { name: { [Op.like]: `%${req.params.searchQuery.toLowerCase()}%` } },
+        { type: { [Op.like]: `%${req.params.searchQuery.toLowerCase()}%` } },
+      ],
+    },
+    order: [["id", "ASC"]],
+    limit: 50,
+  });
+  res.render("index", { pokemons });
+});
+
 app.listen(process.env.PORT, () => {
   console.log(`server running on port ${port}
   http://localhost:3000/`);

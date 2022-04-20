@@ -10,7 +10,7 @@
         <h3>Name</h3>
         <p><%= poke.name %></p>
       </div>
-      <img src="<%= poke.image %> " class="pokeImg" />
+      <img src="<%= poke.image %> " class="pokeImg" title="Click for details" />
       <div class="inputStats">
         <h3>Type</h3>
         <p><%= poke.type %></p>
@@ -18,6 +18,5 @@
     </div>
     <% }) %>
   </div>
-  <button><a href="/register">Register new Pokemon</a></button>
 </main>
 <%- include ('common/footer') -%>

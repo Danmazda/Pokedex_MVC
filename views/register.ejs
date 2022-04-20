@@ -1,14 +1,25 @@
 <%- include ('common/header') -%>
 <main class="formContainer">
-  <h1>Register a new Pokemon</h1>
+  <h2>Register a new Pokemon</h2>
   <form action="/" method="post">
     <div class="inputStats">
       <label for="id">Number</label>
-      <input type="number" name="id" />
+      <input
+        type="number"
+        name="id"
+        required="required"
+        title="number is obligatory"
+      />
     </div>
     <div class="inputStats">
       <label for="name">Name</label>
-      <input type="text" name="name" />
+      <input
+        type="text"
+        name="name"
+        required="required"
+        title="name is obligatory"
+        autocapitalize="none"
+      />
       <label for="type">Type</label>
       <select name="type">
         <Optgroup>
@@ -20,7 +31,12 @@
     </div>
     <div class="inputStats">
       <label for="image">Image URL</label>
-      <input type="url" name="image" />
+      <input
+        type="url"
+        name="image"
+        required="required"
+        title="image URL is obligatory"
+      />
     </div>
     <label for="description">Description</label>
     <textarea
