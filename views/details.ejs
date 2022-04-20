@@ -2,7 +2,7 @@
 <main>
   <div class="inputStats">
     <h3>Nº</h3>
-    <p><%= pokemon.id %></p>
+    <p><%= String(pokemon.id).padStart(3, '0') %></p>
     <h3>Name</h3>
     <p><%= pokemon.name %></p>
   </div>
