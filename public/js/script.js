@@ -21,17 +21,21 @@ searchBt.addEventListener("click", () => {
   location.href = `/search/${searchInput.value}`;
 });
 
-updateBt.addEventListener("click", () => {
-  location.href = `/update`;
-});
+if (updateBt) {
+  updateBt.addEventListener("click", () => {
+    location.href = `/update`;
+  });
+}
 
 menu.addEventListener("click", () => {
   if (!menuContent.classList.contains("active")) {
     menuContent.classList.add("active");
   }
+  console.log("clicked menu");
 });
 menuClose.addEventListener("click", () => {
   if (menuContent.classList.contains("active")) {
     menuContent.classList.remove("active");
   }
+  console.log("clicked close menu");
 });
