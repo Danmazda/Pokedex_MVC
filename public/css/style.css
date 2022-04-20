@@ -33,6 +33,7 @@ header {
   height: 15%;
   width: 100%;
   background-color: #e64119;
+  max-width: 100%;
 }
 .imageHead {
   height: 8vh;
@@ -41,6 +42,14 @@ header {
 .imageHead:hover {
   cursor: pointer;
   transform: scale(0.8);
+}
+.fa-bars {
+  display: none;
+  font-size: 2em;
+}
+.fa-xmark {
+  display: none;
+  font-size: 2em;
 }
 /* Navigation */
 ul {
@@ -222,5 +231,43 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+  }
+  .fa-bars {
+    position: fixed;
+    right: 10px;
+    display: block;
+  }
+  .fa-bars:hover {
+    color: white;
+  }
+  .fa-xmark {
+    display: block;
+    color: white;
+  }
+  .fa-xmark:hover {
+    color: red;
+  }
+  header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.623);
+  }
+  ul {
+    flex-direction: column;
+    margin-top: 20px;
+  }
+  .active {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    height: 100vh;
+    padding: 10px;
   }
 }

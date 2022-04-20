@@ -2,6 +2,9 @@ const pokemons = document.querySelectorAll(".pokeDiv");
 const title = document.querySelector(".imageHead");
 const searchBt = document.querySelector(".fa-magnifying-glass");
 const searchInput = document.querySelector("input");
+const menuClose = document.querySelector(".fa-xmark");
+const menu = document.querySelector(".collapsible");
+const menuContent = document.querySelector(".content");
 pokemons.forEach((poke) => {
   poke.addEventListener("click", () => {
     const key = poke.getAttribute("key");
@@ -15,4 +18,15 @@ title.addEventListener("click", () => {
 
 searchBt.addEventListener("click", () => {
   location.href = `/search/${searchInput.value}`;
+});
+
+menu.addEventListener("click", () => {
+  if (!menuContent.classList.contains("active")) {
+    menuContent.classList.add("active");
+  }
+});
+menuClose.addEventListener("click", () => {
+  if (menuContent.classList.contains("active")) {
+    menuContent.classList.remove("active");
+  }
 });
