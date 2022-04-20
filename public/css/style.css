@@ -184,8 +184,8 @@ p::first-letter {
 }
 
 .pokeImgSingle {
-  height: 60%;
-  width: auto;
+  height: auto;
+  width: 20%;
 }
 
 /* Scrollbar */
@@ -269,5 +269,9 @@ footer {
     justify-content: start;
     height: 100vh;
     padding: 10px;
+  }
+  .pokeImgSingle {
+    height: auto;
+    width: 70%;
   }
 }

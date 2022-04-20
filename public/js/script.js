@@ -5,6 +5,7 @@ const searchInput = document.querySelector("input");
 const menuClose = document.querySelector(".fa-xmark");
 const menu = document.querySelector(".collapsible");
 const menuContent = document.querySelector(".content");
+const updateBt = document.querySelector(".update");
 pokemons.forEach((poke) => {
   poke.addEventListener("click", () => {
     const key = poke.getAttribute("key");
@@ -18,6 +19,10 @@ title.addEventListener("click", () => {
 
 searchBt.addEventListener("click", () => {
   location.href = `/search/${searchInput.value}`;
+});
+
+updateBt.addEventListener("click", () => {
+  location.href = `/update`;
 });
 
 menu.addEventListener("click", () => {

@@ -113,7 +113,7 @@ app.get("/details/:id", async (req, res) => {
   });
   res.render("details", { pokemon: pokemon });
 });
-app.get("/update/:id", async (req, res) => {
+app.get("/update", async (req, res) => {
   res.write("this is the update path");
   res.send();
 });
