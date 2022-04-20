@@ -1,36 +1,48 @@
 <%- include ('common/header') -%>
 <main class="formContainer">
-  <h1>Register a new Pokemon:</h1>
+  <h1>Register a new Pokemon</h1>
   <form action="/" method="post">
-    <label for="id">Pokemón number:</label>
-    <input type="number" name="id" />
-    <label for="name">Name:</label>
-    <input type="text" name="name" />
-    <label for="type">Type:</label>
-    <select name="type">
-      <Optgroup>
-        <%allTypes.forEach(type=>{ %>
-        <option><%=type%></option>
-        <% })%>
-      </Optgroup>
-    </select>
-    <label for="image">Image URL:</label>
-    <input type="url" name="image" />
-    <label for="description">Description:</label>
+    <div class="inputStats">
+      <label for="id">Pokemón number</label>
+      <input type="number" name="id" />
+    </div>
+    <div class="inputStats">
+      <label for="name">Name</label>
+      <input type="text" name="name" />
+      <label for="type">Type</label>
+      <select name="type">
+        <Optgroup>
+          <%allTypes.forEach(type=>{ %>
+          <option><%=type%></option>
+          <% })%>
+        </Optgroup>
+      </select>
+    </div>
+    <div class="inputStats">
+      <label for="image">Image URL</label>
+      <input type="url" name="image" />
+    </div>
+    <label for="description">Description</label>
     <textarea
       name="description"
-      cols="30"
-      rows="10"
+      cols="15"
+      rows="5"
       placeholder="What is the history of this pokemon..."
     ></textarea>
-    <label for="height">Height:</label>
-    <input type="number" step="0.1" name="height" />
-    <label for="weight">Weight:</label>
-    <input type="number" step="0.1" name="weight" />
-    <label for="category">Category:</label>
-    <input type="text" name="category" />
-    <label for="ability">Ability:</label>
-    <input type="text" name="ability" />
+    <div class="inputStats">
+      <label for="height">Height</label>
+      <input type="number" step="0.1" name="height" />
+      <label for="weight">Weight</label>
+      <input type="number" step="0.1" name="weight" />
+    </div>
+    <div class="inputStats">
+      <label for="category">Category</label>
+      <input type="text" name="category" />
+    </div>
+    <div class="inputStats">
+      <label for="ability">Ability</label>
+      <input type="text" name="ability" />
+    </div>
     <button type="submit">Send</button>
   </form>
 </main>

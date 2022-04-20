@@ -1,16 +1,25 @@
 <%- include ('common/header') -%>
 <main>
-  <h1>Tchau</h1>
+  <h1>Pokedex</h1>
   <div class="pokeContainer">
     <% pokemons.forEach(poke=>{ %>
-    <div key="<%= poke.id %> " class="pokeDiv">
-      <p><%= poke.id %></p>
-      <p><%= poke.name %></p>
-      <img src="<%= poke.image %> " class="pokeImg" />
-      <p><%= poke.type %></p>
+    <div class="pokeDivWrapper">
+      <div key="<%= poke.id %> " class="pokeDiv">
+        <div class="inputStats">
+          <h3>Nº</h3>
+          <p><%= poke.id %></p>
+          <h3>Name</h3>
+          <p><%= poke.name %></p>
+        </div>
+        <img src="<%= poke.image %> " class="pokeImg" />
+        <div class="inputStats">
+          <h3>Type</h3>
+          <p><%= poke.type %></p>
+        </div>
+      </div>
     </div>
     <% }) %>
   </div>
-  <a href="/register">Register new Pokemon</a>
+  <button><a href="/register">Register new Pokemon</a></button>
 </main>
 <%- include ('common/footer') -%>

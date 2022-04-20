@@ -114,5 +114,6 @@ app.get("/details/:id", async (req, res) => {
   res.render("details", { pokemon: pokemon });
 });
 app.listen(process.env.PORT, () => {
-  console.log(`server running on port ${port}`);
+  console.log(`server running on port ${port}
+  http://localhost:3000/`);
 });
