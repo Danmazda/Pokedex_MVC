@@ -47,3 +47,24 @@ export const allTypes = [
   "Dark",
   "Fairy",
 ];
+
+// export const typesDict= {
+//   "Normal": 'grey'
+//   "Fire": 'darkorange',
+//   "Water": 'lightblue',
+//   "Grass": 'lightgreen',
+//   "Flying": ['mediumturquoise', 'grey'],
+//   "Fighting": 'brown',
+//   "Poison": 'purple',
+//   "Electric": 'yellow',
+//   "Ground": ['yellow', 'brown'],
+//   "Rock": 'darkgoldenrod',
+//   "Psychic": 'pink',
+//   "Ice": 'mediumturquoise',
+//   "Bug",
+//   "Ghost",
+//   "Steel",
+//   "Dragon",
+//   "Dark",
+//   "Fairy",
+// }
