@@ -187,6 +187,11 @@ p::first-letter {
   height: auto;
   width: 20%;
 }
+/* Details route */
+.delete{
+  background-color: #e64119;
+}
+
 
 /* Scrollbar */
 ::-webkit-scrollbar {

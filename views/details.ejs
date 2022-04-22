@@ -29,19 +29,8 @@
   </div>
   <dialog>
       <button class="modalClose" >close</button>
-    <form method="POST" action="/?_method=PUT" >
+    <form method="POST" action="/update<%= pokemon.id %>?_method=PUT" >
       <input type="hidden" name="_method" value="PUT" enctype="application/x-www-form-urlencoded">
-      <div class="inputStats">
-        <input
-          type="hidden"
-          name="id"
-          required="required"
-          title="number is obligatory"
-          max="999"
-          min="0"
-          value="<%= pokemon.id %>"
-        />
-      </div>
       <div class="inputStats">
         <label for="name">Name</label>
         <input
@@ -97,6 +86,17 @@
         <input type="text" name="ability" value="<%= pokemon.ability %>"/>
       </div>
       <button type="submit">Update</button>
+    </form>
+    <form method="POST" action="/delete<%=pokemon.id %>?_method=DELETE" style="gap: 0; margin: 5px 0;">
+      <input type="hidden" name="_method" value="DELETE" enctype="application/x-www-form-urlencoded">
+      <p>Something Terribly wrong?</p>
+      <button class="openConfirmation delete" type="button">Delete</button>
+      <dialog class="confirmation">
+        <p><strong>ALERT</strong></p>
+        <p>This action cannot be undone are you sure you want to Delete <%= pokemon.name %> Number <%= pokemon.id %> ?</p>
+        <button type="submit">Yes</button>
+        <button class="closeConfirmation delete">No</button>
+      </dialog>
     </form>
   </dialog>
 </main>

@@ -1,16 +1,24 @@
 {
   "name": "pokedex_mod2_second_project",
   "version": "1.0.0",
-  "description": "",
+  "description": "Pokedex with MVC standarts",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon -e js,html,css,ejs",
     "start": "node index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Danmazda/Pokedex_MVC.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Danmazda/Pokedex_MVC/issues"
+  },
+  "homepage": "https://github.com/Danmazda/Pokedex_MVC#readme",
   "dependencies": {
     "dotenv": "^16.0.0",
     "ejs": "^3.1.6",

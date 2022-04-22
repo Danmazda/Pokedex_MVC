@@ -66,41 +66,14 @@ app.get("/", async (req, res) => {
   res.render("index", { pokemons });
 });
 
-app.put("/", async (req, res) => {
-  let {
-    id,
-    name,
-    type,
-    image,
-    description,
-    height,
-    weight,
-    category,
-    ability
-  } = req.body;
-
-  if (height === "") {
-    height = null;
-  }
-  if (weight === "") {
-    weight = null;
-  }
-
+app.put("/update:id", async (req, res) => {
+  const pokeAttributes = validateAttr(req.body);
+  const id = req.params.id;
   try {
-    const pokemon = await Pokemon.update(
-      {
-        id,
-        name: name.toLowerCase(),
-        type: type.toLowerCase(),
-        image,
-        description,
-        height,
-        weight,
-        category,
-        ability
-      },
-      { returning: true, where: { id } }
-    );
+    const pokemon = await Pokemon.update(pokeAttributes, {
+      returning: true,
+      where: { id }
+    });
     res.send("put request called");
     console.log(pokemon);
   } catch (error) {
@@ -108,37 +81,20 @@ app.put("/", async (req, res) => {
   }
 });
 
-app.post("/", async (req, res) => {
-  let {
-    id,
-    name,
-    type,
-    image,
-    description,
-    height,
-    weight,
-    category,
-    ability
-  } = req.body;
-
-  if (height === "") {
-    height = null;
-  }
-  if (weight === "") {
-    weight = null;
-  }
+app.delete("/delete:id", async (req, res) => {
+  const id = req.params.id;
   try {
-    await Pokemon.create({
-      id,
-      name: name.toLowerCase(),
-      type: type.toLowerCase(),
-      image,
-      description,
-      height,
-      weight,
-      category,
-      ability
-    });
+    await Pokemon.destroy({ where: { id } });
+    res.send(`${id} has been deleted`);
+  } catch (error) {
+    console.error("ERROR DELETING pokemon", error);
+  }
+});
+
+app.post("/", async (req, res) => {
+  const pokeAttributes = validateAttr(req.body);
+  try {
+    await Pokemon.create(pokeAttributes);
     await Pokemon.sync();
     console.log("Pokemons were synchronized successfully.");
     res.redirect("/");
@@ -182,3 +138,34 @@ app.listen(process.env.PORT, () => {
   console.log(`server running on port ${process.env.PORT}
   http://localhost:3000/`);
 });
+
+function validateAttr(obj) {
+  let {
+    id,
+    name,
+    type,
+    image,
+    description,
+    height,
+    weight,
+    category,
+    ability
+  } = obj;
+  if (height === "") {
+    height = null;
+  }
+  if (weight === "") {
+    weight = null;
+  }
+  return {
+    id,
+    name: name.toLowerCase(),
+    type: type.toLowerCase(),
+    image,
+    description,
+    height,
+    weight,
+    category,
+    ability
+  };
+}

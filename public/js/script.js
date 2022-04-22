@@ -1,15 +1,26 @@
 const pokemons = document.querySelectorAll(".pokeDiv");
 const title = document.querySelector(".imageHead");
+// partials/header.ejs
+// Search functionality
 const searchBt = document.querySelector(".fa-magnifying-glass");
 const searchInput = document.querySelector("input");
+//Menu On mobile
 const menuClose = document.querySelector(".fa-xmark");
 const menu = document.querySelector(".collapsible");
 const menuContent = document.querySelector(".content");
+
+//Details.ejs
 const updateBt = document.querySelector(".update");
 const dialog = document.querySelector("dialog");
+//Description value in the form (details.ejs)
 const descriptionUpdate = document.querySelector(".updateDesc");
 const description = document.querySelector(".description");
-const btCloseModal = document.querySelector(".modalClose");
+const btModalClose = document.querySelector(".modalClose");
+
+//Confirmation modal functionality
+const openConfirmationModal = document.querySelector(".openConfirmation");
+const confirmationModal = document.querySelector(".confirmation");
+const closeConfirmationModal = document.querySelector(".closeConfirmation");
 
 pokemons.forEach((poke) => {
   poke.addEventListener("click", () => {
@@ -37,8 +48,9 @@ menuClose.addEventListener("click", () => {
   }
 });
 
-if (btCloseModal) {
-  btCloseModal.addEventListener("click", () => {
+// if statements so that script does not break
+if (btModalClose) {
+  btModalClose.addEventListener("click", () => {
     dialog.close();
   });
 }
@@ -47,5 +59,14 @@ if (updateBt) {
   updateBt.addEventListener("click", () => {
     descriptionUpdate.value = description.innerText;
     dialog.showModal();
+  });
+}
+
+if (openConfirmationModal) {
+  openConfirmationModal.addEventListener("click", () => {
+    confirmationModal.showModal();
+  });
+  closeConfirmationModal.addEventListener("click", () => {
+    confirmationModal.close();
   });
 }
