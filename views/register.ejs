@@ -21,8 +21,8 @@
         autocapitalize="none"
       />
       <label for="type">Type</label>
-      <select name="type">
-        <Optgroup>
+      <select name="type" required>
+        <Optgroup label="Types">
           <%allTypes.forEach(type=>{ %>
           <option><%=type%></option>
           <% })%>

@@ -6,6 +6,11 @@ const menuClose = document.querySelector(".fa-xmark");
 const menu = document.querySelector(".collapsible");
 const menuContent = document.querySelector(".content");
 const updateBt = document.querySelector(".update");
+const dialog = document.querySelector("dialog");
+const descriptionUpdate = document.querySelector(".updateDesc");
+const description = document.querySelector(".description");
+const btCloseModal = document.querySelector(".modalClose");
+
 pokemons.forEach((poke) => {
   poke.addEventListener("click", () => {
     const key = poke.getAttribute("key");
@@ -21,21 +26,26 @@ searchBt.addEventListener("click", () => {
   location.href = `/search/${searchInput.value}`;
 });
 
-if (updateBt) {
-  updateBt.addEventListener("click", () => {
-    location.href = `/update`;
-  });
-}
-
 menu.addEventListener("click", () => {
   if (!menuContent.classList.contains("active")) {
     menuContent.classList.add("active");
   }
-  console.log("clicked menu");
 });
 menuClose.addEventListener("click", () => {
   if (menuContent.classList.contains("active")) {
     menuContent.classList.remove("active");
   }
-  console.log("clicked close menu");
 });
+
+if (btCloseModal) {
+  btCloseModal.addEventListener("click", () => {
+    dialog.close();
+  });
+}
+
+if (updateBt) {
+  updateBt.addEventListener("click", () => {
+    descriptionUpdate.value = description.innerText;
+    dialog.showModal();
+  });
+}
