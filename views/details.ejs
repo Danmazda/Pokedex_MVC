@@ -1,4 +1,4 @@
-<%- include ('common/header') -%>
+<%- include ('partials/header') -%>
 <main>
   <div class="inputStats">
     <h3>Nº</h3>
@@ -25,10 +25,10 @@
   <p class="description"><%= pokemon.description %></p>
   <div class="inputStats">
     <p>See something wrong?</p>
-    <button class="update">update</button>
+    <button class="update">Edit</button>
   </div>
   <dialog>
-      <button class="modalClose" >close</button>
+      <button class="modalClose delete" ><i class="fa-regular fa-rectangle-xmark"></i></button>
     <form method="POST" action="/update<%= pokemon.id %>?_method=PUT" >
       <input type="hidden" name="_method" value="PUT" enctype="application/x-www-form-urlencoded">
       <div class="inputStats">
@@ -95,9 +95,9 @@
         <p><strong>ALERT</strong></p>
         <p>This action cannot be undone are you sure you want to Delete <%= pokemon.name %> Number <%= pokemon.id %> ?</p>
         <button type="submit">Yes</button>
-        <button class="closeConfirmation delete">No</button>
+        <button class="closeConfirmation delete" type="button">No</button>
       </dialog>
     </form>
   </dialog>
 </main>
-<%- include ('common/footer') -%>
+<%- include ('partials/footer') -%>

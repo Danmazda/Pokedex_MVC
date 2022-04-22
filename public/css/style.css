@@ -36,7 +36,8 @@ header {
   max-width: 100%;
 }
 .imageHead {
-  height: 8vh;
+  margin: 3px;
+  height: 7vh;
   width: auto;
 }
 .imageHead:hover {
@@ -64,18 +65,20 @@ a {
   text-decoration: none;
   color: white;
 }
-ul li a {
-  padding-right: 5px;
+ul li a:hover {
+  border-bottom: 2px solid #305ee6;
 }
-ul li:hover {
-  transform: translateY(-5px);
-}
-ul li:active {
+ul li a:active {
   transform: scale(0.9);
 }
 .fa-magnifying-glass {
   cursor: pointer;
   color: aliceblue;
+}
+.fa-magnifying-glass:hover {
+  cursor: pointer;
+  color: aliceblue;
+  transform: scale(1.1);
 }
 
 /* Main */
@@ -188,10 +191,23 @@ p::first-letter {
   width: 20%;
 }
 /* Details route */
-.delete{
-  background-color: #e64119;
+dialog {
+  margin: auto;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+}
+dialog::backdrop {
+  background-color: #113399;
+  opacity: 0.5;
 }
 
+.delete {
+  background-color: #e64119;
+}
 
 /* Scrollbar */
 ::-webkit-scrollbar {
@@ -221,6 +237,8 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 10px;
+  font-size: 1.2em;
 }
 
 /* Media Queries */

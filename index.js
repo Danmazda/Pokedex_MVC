@@ -57,6 +57,7 @@ export const Pokemon = sequelize.define("Pokemon", {
 });
 
 //express routes
+
 app.get("/", async (req, res) => {
   const pokemons = await Pokemon.findAll({
     attributes: ["id", "name", "image", "type"],
@@ -74,10 +75,17 @@ app.put("/update:id", async (req, res) => {
       returning: true,
       where: { id }
     });
-    res.send("put request called");
-    console.log(pokemon);
+    const response = {
+      status: true,
+      message: "Pokemon was updated successfully!"
+    };
+    res.render("response", { response });
   } catch (error) {
-    console.error("ERROR UPDATING POKEMON", error);
+    const response = {
+      status: false,
+      message: "Pokemon update failed!"
+    };
+    res.render("response", { response });
   }
 });
 

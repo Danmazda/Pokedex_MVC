@@ -1,0 +1,17 @@
+<%- include ('partials/header') -%>
+<main>
+  <div id="response">
+    <%if(response.status){%>
+      <h2 style="background-color:green"> <%=response.message%></h2>
+    <%} else {%>
+      <h2 style="background-color:red"> <%=response.message%></h2>
+    <%}%>
+    <p>redirecting to home in 4 seconds...</p>
+  </div>
+</main>
+<script>
+  setTimeout(() => {
+  location.href = "/";
+}, 4000);
+</script>
+<%- include ('partials/footer') -%>
