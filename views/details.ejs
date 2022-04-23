@@ -72,6 +72,7 @@
         <label for="secondType">Second Type</label>
         <select name="secondType" required>
           <Optgroup >
+              <option>None</option>
             <%allTypes.forEach(type=>{ %>
               <%if(type.toLowerCase()=== pokemon.secondType){%>
                 <option selected><%=type%></option>
@@ -121,7 +122,7 @@
       <button class="openConfirmation delete" type="button">Delete</button>
       <dialog class="confirmation">
         <p><strong>ALERT</strong></p>
-        <p>This action cannot be undone are you sure you want to Delete <%= pokemon.name %> Number <%= pokemon.id %> ?</p>
+        <p>This action cannot be undone are you sure you want to Delete <%= pokemon.name.toUpperCase() %> Number <%= pokemon.number %> ?</p>
         <button type="submit">Yes</button>
         <button class="closeConfirmation delete" type="button">No</button>
       </dialog>

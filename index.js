@@ -64,8 +64,6 @@ export const Pokemon = sequelize.define("Pokemon", {
   }
 });
 
-await Pokemon.sync();
-console.log("Pokemon table syncronized");
 //express routes
 
 app.get("/", async (req, res) => {
@@ -77,23 +75,41 @@ app.get("/", async (req, res) => {
   res.render("index", { pokemons });
 });
 
-app.put("/update:id", async (req, res) => {
+app.post("/", async (req, res) => {
   const pokeAttributes = validateAttr(req.body);
-  const id = req.params.id;
   try {
-    const pokemon = await Pokemon.update(pokeAttributes, {
-      returning: true,
-      where: { id }
-    });
+    await Pokemon.create(pokeAttributes);
+    await Pokemon.sync();
     const response = {
       status: true,
-      message: "Pokemon was updated successfully!"
+      message: `${pokeAttributes.name} was created succesfully`
     };
     res.render("response", { response });
   } catch (error) {
     const response = {
       status: false,
-      message: "Pokemon update failed!"
+      message: `Failed to create ${pokeAttributes.name} please try again later`
+    };
+    res.render("response", { response });
+  }
+});
+
+app.put("/update:id", async (req, res) => {
+  const pokeAttributes = validateAttr(req.body);
+  const id = req.params.id;
+  try {
+    await Pokemon.update(pokeAttributes, {
+      where: { id }
+    });
+    const response = {
+      status: true,
+      message: `${pokeAttributes.name} was updated succesfully`
+    };
+    res.render("response", { response });
+  } catch (error) {
+    const response = {
+      status: false,
+      message: `${pokeAttributes.name} update has failed! please try again later`
     };
     res.render("response", { response });
   }
@@ -103,21 +119,17 @@ app.delete("/delete:id", async (req, res) => {
   const id = req.params.id;
   try {
     await Pokemon.destroy({ where: { id } });
-    res.send(`${id} has been deleted`);
+    const response = {
+      status: true,
+      message: `${id} was deleted succesfully`
+    };
+    res.render("response", { response });
   } catch (error) {
-    console.error("ERROR DELETING pokemon", error);
-  }
-});
-
-app.post("/", async (req, res) => {
-  const pokeAttributes = validateAttr(req.body);
-  try {
-    await Pokemon.create(pokeAttributes);
-    await Pokemon.sync();
-    console.log("Pokemons were synchronized successfully.");
-    res.redirect("/");
-  } catch (error) {
-    console.error("ERROR CREATING POKE   ", error);
+    const response = {
+      status: false,
+      message: `Failed to delete ${pokeAttributes.name} please try again later`
+    };
+    res.render("response", { response });
   }
 });
 
@@ -132,10 +144,6 @@ app.get("/details/:id", async (req, res) => {
     }
   });
   res.render("details", { pokemon, allTypes });
-});
-app.get("/update", async (req, res) => {
-  res.write("this is the update path");
-  res.send();
 });
 
 app.get("/search/:searchQuery", async (req, res) => {
@@ -170,20 +178,21 @@ function validateAttr(obj) {
     category,
     ability
   } = obj;
+  secondType = secondType.toLowerCase();
   if (height === "") {
     height = null;
   }
   if (weight === "") {
     weight = null;
   }
-  if (secondType === "") {
+  if (secondType === "none") {
     secondType = null;
   }
   return {
     number: Number(number),
     name: name.toLowerCase(),
     type: type.toLowerCase(),
-    secondType: secondType.toLowerCase(),
+    secondType,
     image,
     description,
     height,

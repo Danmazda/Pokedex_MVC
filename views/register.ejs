@@ -25,6 +25,7 @@
       <label for="type">Type</label>
       <select name="type" required>
         <Optgroup label="Types">
+          
           <%allTypes.forEach(type=>{ %>
           <option><%=type%></option>
           <% })%>
@@ -33,6 +34,7 @@
       <label for="secondType">Second Type</label>
       <select name="secondType" required>
         <Optgroup label="Types">
+            <option selected="selected">None </option>
           <%allTypes.forEach(type=>{ %>
           <option><%=type%></option>
           <% })%>
