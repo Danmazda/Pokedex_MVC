@@ -22,9 +22,14 @@ try {
 
 export const Pokemon = sequelize.define("Pokemon", {
   id: {
+    type: DataTypes.UUID,
+    defaultValue: DataTypes.UUIDV4,
+    primaryKey: true,
+    autoincrement: true
+  },
+  number: {
     type: DataTypes.INTEGER,
     allowNull: false,
-    primaryKey: true,
     unique: true
   },
   name: {
@@ -34,6 +39,9 @@ export const Pokemon = sequelize.define("Pokemon", {
   type: {
     type: DataTypes.STRING,
     allowNull: false
+  },
+  secondType: {
+    type: DataTypes.STRING
   },
   image: {
     type: DataTypes.STRING,
@@ -56,12 +64,14 @@ export const Pokemon = sequelize.define("Pokemon", {
   }
 });
 
+await Pokemon.sync();
+console.log("Pokemon table syncronized");
 //express routes
 
 app.get("/", async (req, res) => {
   const pokemons = await Pokemon.findAll({
-    attributes: ["id", "name", "image", "type"],
-    order: [["id", "ASC"]],
+    attributes: ["id", "number", "name", "image", "type"],
+    order: [["number", "ASC"]],
     limit: 50
   });
   res.render("index", { pokemons });
@@ -118,7 +128,7 @@ app.get("/register", (req, res) => {
 app.get("/details/:id", async (req, res) => {
   const pokemon = await Pokemon.findOne({
     where: {
-      id: Number(req.params.id)
+      id: req.params.id
     }
   });
   res.render("details", { pokemon, allTypes });
@@ -136,7 +146,7 @@ app.get("/search/:searchQuery", async (req, res) => {
         { type: { [Op.like]: `%${req.params.searchQuery.toLowerCase()}%` } }
       ]
     },
-    order: [["id", "ASC"]],
+    order: [["number", "ASC"]],
     limit: 50
   });
   res.render("index", { pokemons });
@@ -149,9 +159,10 @@ app.listen(process.env.PORT, () => {
 
 function validateAttr(obj) {
   let {
-    id,
+    number,
     name,
     type,
+    secondType,
     image,
     description,
     height,
@@ -165,10 +176,14 @@ function validateAttr(obj) {
   if (weight === "") {
     weight = null;
   }
+  if (secondType === "") {
+    secondType = null;
+  }
   return {
-    id,
+    number: Number(number),
     name: name.toLowerCase(),
     type: type.toLowerCase(),
+    secondType: secondType.toLowerCase(),
     image,
     description,
     height,

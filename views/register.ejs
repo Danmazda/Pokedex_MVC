@@ -3,12 +3,12 @@
   <h2>Register a new Pokemon</h2>
   <form action="/" method="post">
     <div class="inputStats">
-      <label for="id">Number</label>
+      <label for="number">Number</label>
       <input
         type="number"
-        name="id"
+        name="number"
         required="required"
-        title="number is obligatory"
+        title="Number of the pokemon in the pokedex"
       />
     </div>
     <div class="inputStats">
@@ -17,11 +17,21 @@
         type="text"
         name="name"
         required="required"
-        title="name is obligatory"
+        title="Name of the pokemon"
         autocapitalize="none"
       />
+    </div>
+    <div class="inputStats">
       <label for="type">Type</label>
       <select name="type" required>
+        <Optgroup label="Types">
+          <%allTypes.forEach(type=>{ %>
+          <option><%=type%></option>
+          <% })%>
+        </Optgroup>
+      </select>
+      <label for="secondType">Second Type</label>
+      <select name="secondType" required>
         <Optgroup label="Types">
           <%allTypes.forEach(type=>{ %>
           <option><%=type%></option>
@@ -47,9 +57,9 @@
     ></textarea>
     <div class="inputStats">
       <label for="height">Height</label>
-      <input type="number" step="0.1" name="height" />
+      <input type="number" step="0.1" name="height" min="0.1" max="21"/>
       <label for="weight">Weight</label>
-      <input type="number" step="0.1" name="weight" />
+      <input type="number" step="0.1" name="weight" min="0.1" max="999"/>
     </div>
     <div class="inputStats">
       <label for="category">Category</label>

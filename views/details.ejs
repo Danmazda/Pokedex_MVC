@@ -2,7 +2,7 @@
 <main>
   <div class="inputStats">
     <h3>Nº</h3>
-    <p><%= String(pokemon.id).padStart(3, '0') %></p>
+    <p><%= String(pokemon.number).padStart(3, '0') %></p>
     <h3>Name</h3>
     <p><%= pokemon.name %></p>
   </div>
@@ -12,8 +12,14 @@
     <p><%= pokemon.height %> m</p>
     <h3>Wg</h3>
     <p><%= pokemon.weight %> kg</p>
+  </div>
+  <div class="inputStats">
     <h3>Type</h3>
     <p><%= pokemon.type %></p>
+    <%if(pokemon.secondType){%>
+      <h3>SecondType</h3>
+      <p><%= pokemon.secondType %></p>
+    <%}%>
   </div>
   <div class="inputStats">
     <h3>Category</h3>
@@ -32,6 +38,14 @@
     <form method="POST" action="/update<%= pokemon.id %>?_method=PUT" >
       <input type="hidden" name="_method" value="PUT" enctype="application/x-www-form-urlencoded">
       <div class="inputStats">
+          <label for="number">Number</label>
+          <input
+            type="number"
+            name="number"
+            required="required"
+            title="Number of the pokemon in the pokedex"
+            value="<%= pokemon.number%>"
+          />
         <label for="name">Name</label>
         <input
           type="text"
@@ -41,11 +55,25 @@
           autocapitalize="none"
           value="<%= pokemon.name.toUpperCase() %>"
         />
+      </div>
+      <div class="inputStats">
         <label for="type">Type</label>
-        <select name="type" value="<%= pokemon.type %>" required>
+        <select name="type" required>
           <Optgroup >
             <%allTypes.forEach(type=>{ %>
               <%if(type.toLowerCase()=== pokemon.type){%>
+                <option selected><%=type%></option>
+              <%}else{%>
+                <option><%=type%></option>
+              <%}%>
+            <% })%>
+          </Optgroup>
+        </select>
+        <label for="secondType">Second Type</label>
+        <select name="secondType" required>
+          <Optgroup >
+            <%allTypes.forEach(type=>{ %>
+              <%if(type.toLowerCase()=== pokemon.secondType){%>
                 <option selected><%=type%></option>
               <%}else{%>
                 <option><%=type%></option>
