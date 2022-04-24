@@ -2,13 +2,13 @@
 This is a project for the Blue EdTech web development course.
 Second project from the second module.
 <h2>Objective</h2>
-Make a Pokedex according to the Model, View controller standarts. Project must have an Index, Details and Register pages.
+<p>Make a Pokedex according to the Model, View controller standarts.</p>
+<p>Project must have an Index, Details and Register pages.</p>
 <h2>Technologies used</h2>
-Node.js 
-Express.js for server and Controller
-EJS for the View
-Sequelize with PostgreSQL for the Model
-Vanilla Javascript for page script
+<p>Node.js</p>
+<p>Express.js for server and Controller</p>
+<p>EJS as View engine</p>
+<p>Sequelize with PostgreSQL for the Model.</p>
 <h2>Link</h2>
 Project is live on:
-https://pokedex-mvc-danilo.herokuapp.com/
+https://pokedex-mvc.azurewebsites.net/
