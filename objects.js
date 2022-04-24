@@ -18,3 +18,8 @@ export const allTypes = [
   "Dark",
   "Fairy"
 ];
+export const typeBorderDict = {
+  grass: "#619918",
+  water: "#305ee6",
+  fire: "darkorange"
+};

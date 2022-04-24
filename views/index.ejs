@@ -3,7 +3,7 @@
   <div class="pokeContainer">
     <% pokemons.forEach(poke=>{ %>
 
-    <div key="<%= poke.id %> " class="pokeDiv">
+    <div key="<%= poke.id %> " class="pokeDiv" style="border-color: <%=typeBorderDict[`${poke.type}`]%>">
       <div class="inputStats">
         <h3>Nº</h3>
         <p><%= String(poke.number).padStart(3, '0') %></p>

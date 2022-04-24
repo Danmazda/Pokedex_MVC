@@ -2,7 +2,7 @@ import express from "express";
 import methodOverride from "method-override";
 import { Sequelize, DataTypes, Op } from "sequelize";
 import dotenv from "dotenv";
-import { allTypes } from "./objects.js";
+import { allTypes, typeBorderDict } from "./objects.js";
 const app = express();
 app.use(express.static("public"));
 app.set("view engine", "ejs");
@@ -34,7 +34,8 @@ export const Pokemon = sequelize.define("Pokemon", {
   },
   name: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    unique: true
   },
   type: {
     type: DataTypes.STRING,
@@ -45,7 +46,8 @@ export const Pokemon = sequelize.define("Pokemon", {
   },
   image: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    unique: true
   },
   description: {
     type: DataTypes.TEXT
@@ -67,12 +69,20 @@ export const Pokemon = sequelize.define("Pokemon", {
 //express routes
 
 app.get("/", async (req, res) => {
-  const pokemons = await Pokemon.findAll({
-    attributes: ["id", "number", "name", "image", "type"],
-    order: [["number", "ASC"]],
-    limit: 50
-  });
-  res.render("index", { pokemons });
+  try {
+    const pokemons = await Pokemon.findAll({
+      attributes: ["id", "number", "name", "image", "type"],
+      order: [["number", "ASC"]],
+      limit: 50
+    });
+    res.render("index", { pokemons, typeBorderDict });
+  } catch (error) {
+    const response = {
+      status: false,
+      message: `Critical error: Failed to fetch pokemons`
+    };
+    res.render("response", { response });
+  }
 });
 
 app.post("/", async (req, res) => {
