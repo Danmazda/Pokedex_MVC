@@ -167,7 +167,7 @@ app.get("/search/:searchQuery", async (req, res) => {
     order: [["number", "ASC"]],
     limit: 50
   });
-  res.render("index", { pokemons });
+  res.render("index", { pokemons, typeBorderDict });
 });
 
 app.listen(process.env.PORT, () => {
