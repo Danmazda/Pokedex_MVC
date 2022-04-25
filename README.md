@@ -12,3 +12,5 @@ Second project from the second module.
 <h2>Link</h2>
 Project is live on:
 https://pokedex-mvc.azurewebsites.net/
+<h3>Known issues</h3>
+<p>Edit's update and delete modals break on safari browser.</p>

@@ -9,6 +9,8 @@
         name="number"
         required="required"
         title="Number of the pokemon in the pokedex"
+        max="999"
+        min="0"
       />
     </div>
     <div class="inputStats">
@@ -25,7 +27,6 @@
       <label for="type">Type</label>
       <select name="type" required>
         <Optgroup label="Types">
-          
           <%allTypes.forEach(type=>{ %>
           <option><%=type%></option>
           <% })%>
@@ -34,7 +35,7 @@
       <label for="secondType">Second Type</label>
       <select name="secondType" required>
         <Optgroup label="Types">
-            <option selected="selected">None </option>
+          <option selected="selected">None</option>
           <%allTypes.forEach(type=>{ %>
           <option><%=type%></option>
           <% })%>
@@ -59,9 +60,9 @@
     ></textarea>
     <div class="inputStats">
       <label for="height">Height</label>
-      <input type="number" step="0.1" name="height" min="0.1" max="21"/>
+      <input type="number" step="0.1" name="height" min="0.1" max="21" />
       <label for="weight">Weight</label>
-      <input type="number" step="0.1" name="weight" min="0.1" max="999"/>
+      <input type="number" step="0.1" name="weight" min="0.1" max="999" />
     </div>
     <div class="inputStats">
       <label for="category">Category</label>

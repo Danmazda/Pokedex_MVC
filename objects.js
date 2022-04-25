@@ -16,10 +16,12 @@ export const allTypes = [
   "Steel",
   "Dragon",
   "Dark",
-  "Fairy"
+  "Fairy",
 ];
 export const typeBorderDict = {
   grass: "#619918",
   water: "#305ee6",
-  fire: "darkorange"
+  fire: "darkorange",
+  electric: "gold",
+  bug: "#435e25",
 };

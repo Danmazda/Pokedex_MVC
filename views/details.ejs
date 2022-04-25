@@ -45,6 +45,7 @@
             required="required"
             title="Number of the pokemon in the pokedex"
             value="<%= pokemon.number%>"
+            max="999"
           />
         <label for="name">Name</label>
         <input
@@ -102,9 +103,9 @@
       ></textarea>
       <div class="inputStats">
         <label for="height">Height</label>
-        <input type="number" step="0.1" name="height" value="<%= pokemon.height %>"/>
+        <input type="number" step="0.1" name="height" min="0.1" max="21" value="<%= pokemon.height %>"/>
         <label for="weight">Weight</label>
-        <input type="number" step="0.1" name="weight" value="<%= pokemon.weight %>" />
+        <input type="number" step="0.1" name="weight" min="0.1" max="999" value="<%= pokemon.weight %>" />
       </div>
       <div class="inputStats">
         <label for="category">Category</label>
